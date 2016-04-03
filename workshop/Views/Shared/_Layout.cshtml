@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - workshop</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand">Forse Workshop</a>
+            </div>
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="WebStandard">Web Standard</a></li>
+                    <li><a asp-controller="Home" asp-action="React">React</a></li>
+                    <li><a asp-controller="Home" asp-action="Angular">Angular2</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2016 - workshop</p>
+        </footer>
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

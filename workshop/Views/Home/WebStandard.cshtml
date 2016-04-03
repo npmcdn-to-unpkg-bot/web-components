@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Web Standard";
+}
+@section scripts {
+    <!-- 1. Import components -->
+    <script src="~/js/polyfill/webcomponents-lite.js"></script>
+    <link rel="import" href="~/components/time-shiit.html">
+}
+<br />
+<div class="container">
+    <h1>Web Standards</h1>
+    <!-- 2. Add custom element -->
+    <div>
+        <time-shiit>Loading component...</time-shiit>
+    </div>
+</div>
