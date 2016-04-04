@@ -14,8 +14,8 @@ Forse workshop material on web components, or the component concept of popular j
 * [VueJS](http://vuejs.org/guide/comparison.html) / [RiotJS](http://riotjs.com/)
 
 ### Articles
-https://scotch.io/tutorials/create-a-custom-audio-player-element-using-polymer
-http://cbateman.com/blog/web-components-in-angular-ember-and-react/
-http://www.2ality.com/2015/08/web-component-status.html
-http://developer.telerik.com/featured/web-components-arent-ready-production-yet/
-https://webkit.org/blog/4096/introducing-shadow-dom-api/
+* https://scotch.io/tutorials/create-a-custom-audio-player-element-using-polymer
+* http://cbateman.com/blog/web-components-in-angular-ember-and-react/
+* http://www.2ality.com/2015/08/web-component-status.html
+* http://developer.telerik.com/featured/web-components-arent-ready-production-yet/
+* https://webkit.org/blog/4096/introducing-shadow-dom-api/
