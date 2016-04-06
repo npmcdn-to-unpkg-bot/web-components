@@ -25,24 +25,52 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
 
-    function App() {
+    function App(props) {
         _classCallCheck(this, App);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+
+        _this.state = { rows: [] };
+        _this.state.rows.push(_this.newRow());
+        return _this;
     }
 
     _createClass(App, [{
+        key: 'newRow',
+        value: function newRow() {
+            return {
+                id: this.state.rows.length,
+                days: { Mon: 0, Tis: 0, Ons: 0, Tor: 0, Fre: 0 }
+            };
+        }
+    }, {
+        key: 'addRow',
+        value: function addRow() {
+            this.state.rows.push(this.newRow());
+            this.setState(this.state);
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(delta, rowId, dayId) {
+            var row = this.state.rows[rowId];
+            row.days[dayId] += delta;
+            this.setState(this.state);
+        }
+    }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement(
-                _TimeShiit2.default,
-                { msg: 'pass data in props' },
-                _react2.default.createElement(
-                    'p',
-                    null,
-                    '...or markup as children'
-                )
-            );
+            var _this2 = this;
+
+            var props = {
+                rows: this.state.rows,
+                onchange: function onchange(diff, row, day) {
+                    return _this2.handleChange(diff, row, day);
+                },
+                addrow: function addrow() {
+                    return _this2.addRow();
+                }
+            };
+            return _react2.default.createElement(_TimeShiit2.default, props);
         }
     }]);
 

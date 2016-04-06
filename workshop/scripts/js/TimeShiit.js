@@ -1,54 +1,88 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var TimeShiit = function TimeShiit(_ref) {
+    var rows = _ref.rows;
+    var onchange = _ref.onchange;
+    var addrow = _ref.addrow;
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    var timeRows = rows.map(function (row, idx) {
+        var props = { row: row, onchange: onchange };
+        var key = "row-" + row.id;
+        return _react2.default.createElement(TimeRow, _extends({ key: key }, props));
+    });
+    return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+            "h3",
+            null,
+            "TimeShiit - React"
+        ),
+        timeRows,
+        _react2.default.createElement(
+            "button",
+            { onClick: addrow },
+            "Add Row"
+        )
+    );
+};
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var TimeRow = function TimeRow(_ref2) {
+    var row = _ref2.row;
+    var onchange = _ref2.onchange;
 
-var TimeShiit = function (_React$Component) {
-    _inherits(TimeShiit, _React$Component);
-
-    function TimeShiit() {
-        _classCallCheck(this, TimeShiit);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(TimeShiit).apply(this, arguments));
-    }
-
-    _createClass(TimeShiit, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
+    var days = Object.keys(row.days);
+    var timeFields = days.map(function (day) {
+        var id = "field-" + row.id + "-" + day;
+        var props = { onchange: onchange, rowId: row.id, day: day, value: row.days[day] };
+        return _react2.default.createElement(TimeField, _extends({ key: id }, props));
+    });
+    var sum = days.map(function (day) {
+        return row.days[day];
+    }).reduce(function (p, n) {
+        return p + n;
+    }, 0);
+    return _react2.default.createElement(
+        "div",
+        null,
+        timeFields,
+        _react2.default.createElement(
+            "div",
+            null,
+            _react2.default.createElement(
+                "strong",
                 null,
-                _react2.default.createElement(
-                    'h3',
-                    null,
-                    'TimeShiit - React'
-                ),
-                _react2.default.createElement(
-                    'h4',
-                    null,
-                    this.props.msg
-                ),
-                this.props.children
-            );
-        }
-    }]);
+                "SUMMA: ",
+                sum
+            )
+        )
+    );
+};
 
-    return TimeShiit;
-}(_react2.default.Component);
+var TimeField = function TimeField(_ref3) {
+    var onchange = _ref3.onchange;
+    var rowId = _ref3.rowId;
+    var day = _ref3.day;
+    var value = _ref3.value;
+
+    var change = function change(event) {
+        var newVal = event.target.value;
+        var delta = newVal - value;
+        onchange(delta, rowId, day);
+    };
+    return _react2.default.createElement("input", { type: "number", onChange: change, value: value, title: day });
+};
 
 exports.default = TimeShiit;
