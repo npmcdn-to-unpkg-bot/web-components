@@ -1,0 +1,106 @@
+<template>
+    <style>
+    </style>
+    <table class="wrapper">
+        <tbody>
+            <tr>
+                <td class="name">Project</td>
+                <td><input type="number" value="" /></td>
+                <td><input type="number" value="" /></td>
+                <td><input type="number" value="" /></td>
+                <td><input type="number" value="" /></td>
+                <td><input type="number" value="" /></td>
+                <td class="weekSum">SUM</td>
+            </tr>
+        </tbody>
+    </table>
+</template>
+
+<script>
+    (function () {
+
+        // Refers to the "importer", which is index.html
+        var thatDoc = document;
+
+        // Refers to the "importee", which is src/hello-world.html
+        var thisDoc = (thatDoc._currentScript || thatDoc.currentScript).ownerDocument;
+
+        // Gets content from <template>
+        var template = thisDoc.querySelector('template').content;
+
+        // Creates an object based in the HTML Element prototype
+        var element = Object.create(HTMLElement.prototype);
+
+        // Creates the "weekTotal" attribute and sets a default value
+        element.weekTotal = 1.1;
+
+        // Sets new value to "who" attribute
+        element.setWeekTotal = function (val) {
+            this.weekTotal = val;
+            // Sets "who" value into <strong>
+            this.weekSum.textContent = this.weekTotal;
+        };
+
+        // Fires when an instance of the element is created
+        element.createdCallback = function () {
+
+            // Creates the shadow root
+            var shadowRoot = this.root = this.createShadowRoot();
+
+            // Adds a template clone into shadow root
+            var clone = thatDoc.importNode(template, true);
+            shadowRoot.appendChild(clone);
+
+            // Caches <strong> DOM query
+            this.weekSum = shadowRoot.querySelector('.weekSum');
+            this.nameField = shadowRoot.querySelector('.name');
+            this.row = shadowRoot.querySelector('.wrapper');
+
+            // Checks if the "who" attribute has been overwritten
+            if (this.hasAttribute('weekTotal')) {
+                var total = this.getAttribute('weekTotal');
+                this.setWeekTotal(total);
+            }
+            else {
+                this.setWeekTotal(this.weekTotal);
+            }
+
+            if (this.hasAttribute('name')) {
+                var entryName = this.getAttribute('name');
+                this.nameField.textContent = entryName;
+            } else {
+                this.nameField.content = '...';
+            }
+        };
+
+        // Fires when an instance was inserted into the document
+        element.attachedCallback = function () {
+            // cache input list and turn into array
+            var inputList = [].slice.call(this.row.querySelectorAll('input'));
+
+            // add changelisteners
+            this.row.addEventListener('change', calculateSum.bind(this));
+            function calculateSum() {
+                var total = inputList.reduce(function (prev, next) {
+                    return prev + parseFloat(next.value);
+                }, 0);
+                this.setWeekTotal(total);
+            }
+        };
+
+        // Fires when an instance was removed from the document
+        element.detachedCallback = function () { };
+
+        // Fires when an attribute was added, removed, or updated
+        element.attributeChangedCallback = function (attr, oldVal, newVal) {
+            if (attr === 'name') {
+                console.log(attr, newVal);
+            }
+        };
+
+        // Registers custom element
+        document.registerElement('project-entry', {
+            prototype: element
+        });
+    }());
+</script>

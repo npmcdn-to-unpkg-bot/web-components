@@ -1,7 +1,62 @@
+
+<!-- Import dependencies -->
+<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css" />
+<link rel="import" href="/components/project-entry.html">
+
+<!-- Defines element style -->
+<style>
+    thead th {
+        background-color: lightgray;
+    }
+    .weekSum {
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+</style>
+
 <!-- Defines element markup -->
 <template>
+    <!-- Defines element style -->
+    <style>
+        *, *:after, *:before {
+            box-sizing: border-box;
+        }
+
+        :host {
+            display: block;
+            border: 2px solid #4cff00;
+            width: 80%;
+            position: relative;
+        }
+    </style>
+
     <h3>TimeShiit - WebComponents</h3>
-    <p>Hello <strong></strong> :)</p>
+    <div id="main">
+
+        <div id="registerHoursHeader">
+            <h2>
+                <span class="title">Mine timer denne uken</span>
+            </h2>
+        </div>
+
+        <table class="table table-striped" id="registerHours">
+            <thead>
+                <tr>
+                    <th class="projects">Prosjekter</th>
+                    <th class="dayHeader">Man</th>
+                    <th class="dayHeader">Tir</th>
+                    <th class="dayHeader">Ons</th>
+                    <th class="dayHeader">Tor</th>
+                    <th class="dayHeader">Fre</th>
+                    <th class="sum">Sum</th>
+                </tr>
+            </thead>
+            <tbody>
+                <project-entry name="Ferie"></project-entry>
+                <project-entry name="Fri"></project-entry>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>
@@ -15,54 +70,49 @@
 
     // Gets content from <template>
     var template = thisDoc.querySelector('template').content;
+    var style = thisDoc.querySelector('style');
 
     // Creates an object based in the HTML Element prototype
     var element = Object.create(HTMLElement.prototype);
-
-    // Creates the "who" attribute and sets a default value
-    element.who = 'World';
-
-    // Sets new value to "who" attribute
-    element.setWho = function (val) {
-        this.who = val;
-        // Sets "who" value into <strong>
-        this.strong.textContent = this.who;
-    };
 
     // Fires when an instance of the element is created
     element.createdCallback = function () {
 
         // Creates the shadow root
-        var shadowRoot = this.createShadowRoot();
+        var shadowRoot = this.root = this.createShadowRoot();
 
         // Adds a template clone into shadow root
+        var styleClone = thatDoc.importNode(style, true);
         var clone = thatDoc.importNode(template, true);
+        shadowRoot.appendChild(styleClone);
         shadowRoot.appendChild(clone);
 
         // Caches <strong> DOM query
-        this.strong = shadowRoot.querySelector('strong');
+        this.weekSum = shadowRoot.querySelector('.weekSum');
+        this.table = shadowRoot.querySelector('tbody');
 
         // Checks if the "who" attribute has been overwritten
-        if (this.hasAttribute('who')) {
-            var who = this.getAttribute('who');
-            this.setWho(who);
+        if (this.hasAttribute('weekTotal')) {
+            var total = this.getAttribute('weekTotal');
+            this.setWeekTotal(total);
         }
         else {
-            this.setWho(this.who);
+            this.setWeekTotal(this.weekTotal);
         }
     };
 
     // Fires when an instance was inserted into the document
-    element.attachedCallback = function() {};
+    element.attachedCallback = function () {
+    };
 
     // Fires when an instance was removed from the document
     element.detachedCallback = function() {};
 
     // Fires when an attribute was added, removed, or updated
     element.attributeChangedCallback = function (attr, oldVal, newVal) {
-        if (attr === 'who') {
-            this.setWho(newVal);
-        }
+        // if (attr === 'weekTotal') {
+        //     this.setWeekTotal(newVal);
+        // }
     };
 
     // Registers custom element
