@@ -14,15 +14,14 @@
         System.config({
         transpiler: 'typescript',
         typescriptOptions: { emitDecoratorMetadata: true },
-        packages: {'app': {defaultExtension: 'ts'}}
+        packages: {'/app': {defaultExtension: 'ts'}}
         });
-        System.import('app/main')
+        System.import('/app/main.ts')
             .then(null, console.error.bind(console));
     </script>
 }
 <br />
-<div class="container">
-    <h1>Angular2</h1>
+<div class="container">    
     <!-- 3. Display the application -->
     <div>
         <my-app>Loading angular app...</my-app>
