@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import TimeShiit from './TimeShiit';
+import TimeShiit from './TimeShiit.jsx';
 
 class App extends React.Component {
     render() {
