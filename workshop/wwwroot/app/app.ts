@@ -12,14 +12,14 @@ import { DataService } from './dataService';
     providers: [DataService]
 })
 export class App {
-    
+
     projects: any[] = [];
-    
+
     constructor(private dataService: DataService) { }
-    
+
     ngOnInit() {
         this.dataService.getProjects()
-        .subscribe((projects:any[]) => {            
+        .subscribe((projects:any[]) => {
           this.projects = projects;
         });
     }

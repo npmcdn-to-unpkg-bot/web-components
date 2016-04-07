@@ -5,5 +5,5 @@ import {Component, Input} from 'angular2/core';
     templateUrl: '/app/timeEntry.html'
 })
 export class TimeEntry {
-     @Input('timeEntry') hours;     
+     @Input('timeEntry') hours : any;     
 }

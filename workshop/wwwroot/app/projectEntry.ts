@@ -7,8 +7,6 @@ import { TimeEntry } from './timeEntry';
     directives: [TimeEntry]
 })
 export class ProjectEntry {
-     @Input('projectEntry') project;
-     
-     project = this.project;     
+     @Input('projectEntry') project : any;
      sum = 0;
 }
