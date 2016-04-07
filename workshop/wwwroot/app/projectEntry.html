@@ -1,7 +1,7 @@
 <td class="name">{{project.name}}</td>
-<td [timeEntry]="project.days.monday"></td>
-<td [timeEntry]="project.days.tuesday"></td>
-<td [timeEntry]="project.days.wednesday"></td>
-<td [timeEntry]="project.days.thursday"></td>
-<td [timeEntry]="project.days.friday"></td>
+<td><input type="number" min="0" max="24" class="form-control" [(ngModel)]="project.days.monday" (change)="updateSum()"/></td>
+<td><input type="number" min="0" max="24" class="form-control" [(ngModel)]="project.days.tuesday" (change)="updateSum()"/></td>
+<td><input type="number" min="0" max="24" class="form-control" [(ngModel)]="project.days.wednesday" (change)="updateSum()"/></td>
+<td><input type="number" min="0" max="24" class="form-control" [(ngModel)]="project.days.thursday" (change)="updateSum()"/></td>
+<td><input type="number" min="0" max="24" class="form-control" [(ngModel)]="project.days.friday" (change)="updateSum()"/></td>
 <td class="weekSum">{{sum}}</td>

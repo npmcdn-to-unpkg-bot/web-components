@@ -1,14 +1,12 @@
 import {Component} from 'angular2/core';
-import {Http, Response} from 'angular2/http';
 import { ProjectEntry } from './projectEntry';
-import { TimeEntry } from './timeEntry';
 import { DataService } from './dataService';
 
 @Component({
     selector: 'my-app',
     templateUrl: '/app/app.html',
     styleUrls: ['../app/app.css'],
-    directives: [ProjectEntry, TimeEntry],
+    directives: [ProjectEntry],
     providers: [DataService]
 })
 export class App {
@@ -19,8 +17,12 @@ export class App {
 
     ngOnInit() {
         this.dataService.getProjects()
-        .subscribe((projects:any[]) => {
+        .subscribe((projects: any[]) => {
           this.projects = projects;
         });
+    }
+
+    saveHours() {
+        alert('Saved!');
     }
 }

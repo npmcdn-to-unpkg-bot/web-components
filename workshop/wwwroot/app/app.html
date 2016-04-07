@@ -7,7 +7,7 @@
             <span class="title">Mine timer denne uken</span>
         </h2>
     </div>
-
+        
     <table class="table table-striped" id="registerHours">
         <thead>
             <tr>
@@ -24,4 +24,6 @@
             <tr *ngFor="#project of projects" [projectEntry]="project"></tr>
         </tbody>
     </table>
+    
+    <a class="btn btn-default" (click)="saveHours()">Lagre</a>    
 </div>
