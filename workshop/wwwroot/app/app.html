@@ -20,9 +20,8 @@
                 <th class="sum">Sum</th>
             </tr>
         </thead>
-        <tbody>
-            <tr [projectEntry]="'Prosjekt'"></tr>  
-            <tr [projectEntry]="'Ferie'"></tr>            
+        <tbody>            
+            <tr *ngFor="#project of projects" [projectEntry]="project"></tr>
         </tbody>
     </table>
 </div>

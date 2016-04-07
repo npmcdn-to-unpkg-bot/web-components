@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Ferie",
+        "days": {
+            "monday": 8,
+            "tuesday": 8,
+            "wednesday": 0,
+            "thursday": 0,
+            "friday": 0   
+        }        
+    },
+    {
+        "name": "Prosjekt",
+        "days": {
+            "monday": 0,
+            "tuesday": 0,
+            "wednesday": 8,
+            "thursday": 8,
+            "friday": 8   
+        }        
+    }
+]

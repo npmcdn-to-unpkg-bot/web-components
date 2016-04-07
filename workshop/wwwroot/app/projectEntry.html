@@ -1,7 +1,7 @@
-<td class="name">{{name}}</td>
-<td><input type="number" value="" /></td>
-<td><input type="number" value="" /></td>
-<td><input type="number" value="" /></td>
-<td><input type="number" value="" /></td>
-<td><input type="number" value="" /></td>
+<td class="name">{{project.name}}</td>
+<td [timeEntry]="project.days.monday"></td>
+<td [timeEntry]="project.days.tuesday"></td>
+<td [timeEntry]="project.days.wednesday"></td>
+<td [timeEntry]="project.days.thursday"></td>
+<td [timeEntry]="project.days.friday"></td>
 <td class="weekSum">{{sum}}</td>
