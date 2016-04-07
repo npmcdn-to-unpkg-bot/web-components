@@ -11,8 +11,9 @@ Open project in VS 2015 or... for VS Code users:
 Follow [ASP.NET install guide](http://docs.asp.net/en/latest/getting-started/installing-on-windows.html) and run
 
 `> cd workshop`     
+`> npm install`  
 `> dnu restore`  
-`> dnx web`  
+`> dnx web ASPNET_ENV=Development`  
 
 ### Tech / Libs not part of ws material
 
