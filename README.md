@@ -1,6 +1,8 @@
 # web-components
 Forse workshop material on web components, or the component concept of popular js frameworks
 
+[Slides](https://goo.gl/WIZN3V)  
+
 * [Web Components](http://webcomponents.org/), the emerging standard
 * [Angular2 components](http://learnangular2.com/components/)
 * [React components](https://facebook.github.io/react/docs/thinking-in-react.html)
