@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import { Component, Input } from 'angular2/core';
 
 @Component({
     selector: '[projectEntry]',
@@ -8,7 +8,7 @@ export class ProjectEntry {
      @Input('projectEntry') project: any;
      sum = 0;
 
-     ngOnInit(){
+     ngOnInit() {
          this.updateSum();
      }
 
