@@ -40,3 +40,6 @@ dnu restore is configured to run `npm install`, check it out project.json
 * http://www.2ality.com/2015/08/web-component-status.html
 * http://developer.telerik.com/featured/web-components-arent-ready-production-yet/
 * https://webkit.org/blog/4096/introducing-shadow-dom-api/
+
+## License
+MIT: https://tolu.mit-license.org/
